@@ -42,3 +42,75 @@ namespace API
                 });
     }
 }
+/*
+
+
+public class UndergroundSystem {
+    public List<CheckData> CheckList = new List<CheckData>();
+    public UndergroundSystem() {
+        
+    }
+    
+    public void CheckIn(int id, string stationName, int t) {
+        CheckList.Add(
+        new CheckData{
+            Id = id,
+            StationName = stationName,
+            Time = Convert.ToDouble(t),
+            IsIn = true
+        }
+        );
+        
+    }
+    
+    public void CheckOut(int id, string stationName, int t) {
+        CheckList.Add(
+        new CheckData{
+            Id = id,
+            StationName = stationName,
+            Time = Convert.ToDouble(t),
+            IsIn = false
+        }
+        );
+    }
+    
+    public double GetAverageTime(string startStation, string endStation) {
+        
+        var allCheckInCurrentStation = CheckList.Where(c => c.StationName == startStation && c.IsIn == true).ToList();
+        
+        var allCheckOutCurrentStation = CheckList.Where(c => c.StationName == endStation && c.IsIn == false).ToList();
+        
+        List<double> resList = new List<double>();
+        
+        foreach(var startSt in allCheckInCurrentStation)
+        {
+            var currentIdCheckOut = allCheckOutCurrentStation.Where(c => c.Id == startSt.Id).FirstOrDefault();
+            if(currentIdCheckOut == null)
+                return resList.Sum() / resList.Count;
+            
+            var currentTime = currentIdCheckOut.Time - startSt.Time;
+            resList.Add(currentTime);
+        }
+        
+        /*double sum = Convert.ToDouble(resList.Sum());
+        double count = Convert.ToDouble(resList.Count);
+        return  sum / count;*/
+        
+        return resList.Sum() / resList.Count;
+            
+    }
+}
+
+public class CheckData{
+    
+    public int Id {get; set;}
+    
+    public string StationName {get; set;}
+
+    public double Time {get; set;}
+
+    public bool IsIn {get; set;}
+
+}
+
+ */
